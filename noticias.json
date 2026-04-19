@@ -1,0 +1,89 @@
+{
+  "destaque": {
+    "titulo": "Principais Notícias do Dia",
+    "subtitulo": "Acompanhe os acontecimentos mais importantes do Brasil e do mundo"
+  },
+
+  "featured": [
+    {
+      "categoria": "politics",
+      "categoriaLabel": "Política",
+      "titulo": "Governo anuncia novo programa de investimento",
+      "descricao": "Medidas que devem impactar economia e mercado de trabalho nos próximos meses.",
+      "tempo": "Há 2 horas"
+    },
+    {
+      "categoria": "economy",
+      "categoriaLabel": "Economia",
+      "titulo": "Mercado fecha em alta com expectativas positivas",
+      "descricao": "Índices encerram o dia em patamares recordes, puxados por ações do setor financeiro.",
+      "tempo": "Há 3 horas"
+    },
+    {
+      "categoria": "tech",
+      "categoriaLabel": "Tecnologia",
+      "titulo": "Startup brasileira recebe investimento recorde",
+      "descricao": "Empresa de inteligência artificial arrecada 50 milhões em rodada de financiamento.",
+      "tempo": "Há 5 horas"
+    }
+  ],
+
+  "noticias": [
+    {
+      "categoria": "world",
+      "categoriaLabel": "Mundo",
+      "titulo": "Cúpula internacional discute questões climáticas",
+      "descricao": "Líderes mundiais se reúnem para discutir metas de redução de emissões.",
+      "tempo": "Há 30 min"
+    },
+    {
+      "categoria": "science",
+      "categoriaLabel": "Ciência",
+      "titulo": "Descoberta revolucionária em medicina regenerativa",
+      "descricao": "Pesquisadores desenvolvem novo tratamento para doenças degenerativas.",
+      "tempo": "Há 1 hora"
+    },
+    {
+      "categoria": "sports",
+      "categoriaLabel": "Esportes",
+      "titulo": "Seleção brasileira vence amistoso preparatório",
+      "descricao": "Time enfrenta adversário europeu em jogo com grande movimentação no meio-campo.",
+      "tempo": "Há 2 horas"
+    },
+    {
+      "categoria": "politics",
+      "categoriaLabel": "Política",
+      "titulo": "Câmara aprova projeto de lei importante",
+      "descricao": "Legislativo valida proposta que tramitava há mais de um ano na casa.",
+      "tempo": "Há 3 horas"
+    },
+    {
+      "categoria": "economy",
+      "categoriaLabel": "Economia",
+      "titulo": "Dólar fecha em queda após decisão do BC",
+      "descricao": "Banco Central mantém taxa de juros e revisa projeções para inflação.",
+      "tempo": "Há 4 horas"
+    },
+    {
+      "categoria": "tech",
+      "categoriaLabel": "Tecnologia",
+      "titulo": "Nova geração de processadores é apresentada",
+      "descricao": "Fabricante anuncia chips com 40% de ganho de performance energética.",
+      "tempo": "Há 5 horas"
+    },
+    {
+      "categoria": "world",
+      "categoriaLabel": "Mundo",
+      "titulo": "Europa enfrenta clima extremo com geada",
+      "descricao": "Temperaturas recordes preocupam autoridades de diversos países europeus.",
+      "tempo": "Há 6 horas"
+    },
+    {
+      "categoria": "science",
+      "categoriaLabel": "Ciência",
+      "titulo": "Astrônomos descobrem novo exoplaneta habitável",
+      "descricao": "Telescópio espacial detecta planeta em zona de habitabilidade de estrela distante.",
+      "tempo": "Há 7 horas"
+    }
+  ]
+}
