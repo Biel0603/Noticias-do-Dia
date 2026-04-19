@@ -17,8 +17,9 @@ async function carregarNoticias() {
     });
     const data = await res.json();
 
-    const destaques = data.filter(n => n.destaque === true);
-    const noticias  = data.filter(n => n.destaque === false || n.destaque === null);
+    // aceita destaque true ou "true"
+    const destaques = data.filter(n => n.destaque === true || n.destaque === 'true');
+    const noticias  = data.filter(n => n.destaque !== true && n.destaque !== 'true');
 
     renderizarFeatured(destaques.slice(0, 3));
     renderizarNoticias(noticias);
@@ -37,12 +38,10 @@ function imagemOuPlaceholder(n, altura) {
 function renderizarFeatured(lista) {
   const grid = document.querySelector('.featured-grid');
   if (!grid) return;
-
   if (lista.length === 0) {
     grid.innerHTML = '<p style="padding:32px;color:var(--ink-muted);">Nenhum destaque cadastrado.</p>';
     return;
   }
-
   grid.innerHTML = lista.map(n => `
     <article class="featured-card" data-categoria="${n.categoria}">
       <div class="featured-card-img" style="height:200px;overflow:hidden;">
@@ -62,12 +61,10 @@ function renderizarFeatured(lista) {
 function renderizarNoticias(lista) {
   const grid = document.querySelector('.news-grid');
   if (!grid) return;
-
   if (lista.length === 0) {
     grid.innerHTML = '<p style="padding:32px;color:var(--ink-muted);">Nenhuma notícia cadastrada.</p>';
     return;
   }
-
   grid.innerHTML = lista.map(n => `
     <article class="news-item" data-categoria="${n.categoria}">
       <div class="news-item-img" style="height:160px;overflow:hidden;">
