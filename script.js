@@ -2,37 +2,54 @@
    DiárioHoje — script.js
    ══════════════════════════════════════════ */
 
+const SUPABASE_URL = 'https://dehuemqkgzzxerudmboh.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_AopBZT46blAViq7aG_3e1Q_93hwYZq2';
 
-/* ── 1. CARREGA NOTÍCIAS DO JSON ── */
+
+/* ── 1. CARREGA NOTÍCIAS DO SUPABASE ── */
 async function carregarNoticias() {
   try {
-    const res  = await fetch('noticias.json');
+    const res  = await fetch(`${SUPABASE_URL}/rest/v1/noticias?select=*&order=created_at.desc`, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`
+      }
+    });
     const data = await res.json();
-    renderizarFeatured(data.featured);
-    renderizarNoticias(data.noticias);
-    renderizarDestaque(data.destaque);
+
+    const destaques = data.filter(n => n.destaque === true);
+    const noticias  = data.filter(n => n.destaque === false || n.destaque === null);
+
+    renderizarFeatured(destaques.slice(0, 3));
+    renderizarNoticias(noticias);
   } catch (err) {
-    console.error('Erro ao carregar noticias.json:', err);
+    console.error('Erro ao carregar notícias:', err);
   }
 }
 
-function renderizarDestaque(destaque) {
-  const titulo    = document.querySelector('.hero-title');
-  const subtitulo = document.querySelector('.hero-subtitle');
-  if (titulo)    titulo.textContent    = destaque.titulo;
-  if (subtitulo) subtitulo.textContent = destaque.subtitulo;
+function imagemOuPlaceholder(n, altura) {
+  if (n.imagem) {
+    return `<img src="${n.imagem}" alt="${n.titulo}" style="width:100%;height:${altura}px;object-fit:cover;" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder ${n.categoria}\\'>${(n.categoria_label||'').toUpperCase()}</div>'">`;
+  }
+  return `<div class="img-placeholder ${n.categoria}">${(n.categoria_label || '').toUpperCase()}</div>`;
 }
 
 function renderizarFeatured(lista) {
   const grid = document.querySelector('.featured-grid');
   if (!grid) return;
+
+  if (lista.length === 0) {
+    grid.innerHTML = '<p style="padding:32px;color:var(--ink-muted);">Nenhum destaque cadastrado.</p>';
+    return;
+  }
+
   grid.innerHTML = lista.map(n => `
     <article class="featured-card" data-categoria="${n.categoria}">
-      <div class="featured-card-img">
-        <div class="img-placeholder ${n.categoria}">${n.categoriaLabel.toUpperCase()}</div>
+      <div class="featured-card-img" style="height:200px;overflow:hidden;">
+        ${imagemOuPlaceholder(n, 200)}
       </div>
       <div class="featured-content">
-        <span class="news-category ${n.categoria}">${n.categoriaLabel}</span>
+        <span class="news-category ${n.categoria}">${n.categoria_label}</span>
         <h3>${n.titulo}</h3>
         <p>${n.descricao}</p>
         <span class="news-time">${n.tempo}</span>
@@ -45,13 +62,19 @@ function renderizarFeatured(lista) {
 function renderizarNoticias(lista) {
   const grid = document.querySelector('.news-grid');
   if (!grid) return;
+
+  if (lista.length === 0) {
+    grid.innerHTML = '<p style="padding:32px;color:var(--ink-muted);">Nenhuma notícia cadastrada.</p>';
+    return;
+  }
+
   grid.innerHTML = lista.map(n => `
     <article class="news-item" data-categoria="${n.categoria}">
-      <div class="news-item-img">
-        <div class="img-placeholder ${n.categoria}">${n.categoriaLabel.toUpperCase()}</div>
+      <div class="news-item-img" style="height:160px;overflow:hidden;">
+        ${imagemOuPlaceholder(n, 160)}
       </div>
       <div class="news-info">
-        <span class="news-category ${n.categoria}">${n.categoriaLabel}</span>
+        <span class="news-category ${n.categoria}">${n.categoria_label}</span>
         <h4>${n.titulo}</h4>
         <p>${n.descricao}</p>
         <span class="news-time">${n.tempo}</span>
@@ -192,24 +215,28 @@ function aplicarEventosCards() {
         card.querySelector('h3, h4')?.textContent || '',
         card.querySelector('p')?.textContent      || '',
         card.querySelector('.news-category')?.textContent || '',
-        card.querySelector('.news-time')?.textContent    || ''
+        card.querySelector('.news-time')?.textContent    || '',
+        card.querySelector('img')?.src || ''
       );
     });
   });
 }
 
-function abrirModal(titulo, descr, cat, tempo) {
+function abrirModal(titulo, descr, cat, tempo, imagem) {
   fecharModal();
   const overlay = document.createElement('div');
   overlay.id = 'dh-modal';
   overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.65);display:flex;align-items:center;justify-content:center;padding:24px;animation:fade-in 0.2s ease both;';
   overlay.innerHTML = `
-    <div style="background:var(--cream);border-radius:8px;max-width:560px;width:100%;padding:36px 40px;position:relative;animation:fade-in-up 0.3s ease both;">
-      <button id="dh-modal-close" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;font-size:20px;color:var(--ink-muted);">✕</button>
-      <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.07);padding:3px 9px;border-radius:2px;">${cat}</span>
-      <h2 style="font-family:var(--font-display);font-size:26px;font-weight:700;line-height:1.2;margin:14px 0 12px;color:var(--ink);">${titulo}</h2>
-      <p style="font-size:15px;color:var(--ink-muted);line-height:1.7;">${descr}</p>
-      <p style="font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);margin-top:20px;">${tempo}</p>
+    <div style="background:var(--cream);border-radius:8px;max-width:560px;width:100%;overflow:hidden;position:relative;animation:fade-in-up 0.3s ease both;">
+      ${imagem ? `<img src="${imagem}" alt="${titulo}" style="width:100%;height:220px;object-fit:cover;">` : ''}
+      <div style="padding:28px 36px 36px;">
+        <button id="dh-modal-close" style="position:absolute;top:16px;right:16px;background:rgba(0,0,0,0.4);border:none;cursor:pointer;font-size:18px;color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;">✕</button>
+        <span style="font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.07);padding:3px 9px;border-radius:2px;">${cat}</span>
+        <h2 style="font-family:var(--font-display);font-size:26px;font-weight:700;line-height:1.2;margin:14px 0 12px;color:var(--ink);">${titulo}</h2>
+        <p style="font-size:15px;color:var(--ink-muted);line-height:1.7;">${descr}</p>
+        <p style="font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);margin-top:20px;">${tempo}</p>
+      </div>
     </div>
   `;
   document.body.appendChild(overlay);
@@ -268,7 +295,7 @@ function aplicarObserver() {
   document.body.appendChild(btn);
   window.addEventListener('scroll', () => {
     const v = window.scrollY > 400;
-    btn.style.opacity      = v ? '1' : '0';
+    btn.style.opacity       = v ? '1' : '0';
     btn.style.pointerEvents = v ? 'auto' : 'none';
   }, { passive: true });
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));

@@ -10,21 +10,24 @@
       "categoriaLabel": "Política",
       "titulo": "Governo anuncia novo programa de investimento",
       "descricao": "Medidas que devem impactar economia e mercado de trabalho nos próximos meses.",
-      "tempo": "Há 2 horas"
+      "tempo": "Há 2 horas",
+      "imagem": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&q=80"
     },
     {
       "categoria": "economy",
       "categoriaLabel": "Economia",
       "titulo": "Mercado fecha em alta com expectativas positivas",
       "descricao": "Índices encerram o dia em patamares recordes, puxados por ações do setor financeiro.",
-      "tempo": "Há 3 horas"
+      "tempo": "Há 3 horas",
+      "imagem": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80"
     },
     {
       "categoria": "tech",
       "categoriaLabel": "Tecnologia",
       "titulo": "Startup brasileira recebe investimento recorde",
       "descricao": "Empresa de inteligência artificial arrecada 50 milhões em rodada de financiamento.",
-      "tempo": "Há 5 horas"
+      "tempo": "Há 5 horas",
+      "imagem": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80"
     }
   ],
 
@@ -34,56 +37,64 @@
       "categoriaLabel": "Mundo",
       "titulo": "Cúpula internacional discute questões climáticas",
       "descricao": "Líderes mundiais se reúnem para discutir metas de redução de emissões.",
-      "tempo": "Há 30 min"
+      "tempo": "Há 30 min",
+      "imagem": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80"
     },
     {
       "categoria": "science",
       "categoriaLabel": "Ciência",
       "titulo": "Descoberta revolucionária em medicina regenerativa",
       "descricao": "Pesquisadores desenvolvem novo tratamento para doenças degenerativas.",
-      "tempo": "Há 1 hora"
+      "tempo": "Há 1 hora",
+      "imagem": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80"
     },
     {
       "categoria": "sports",
       "categoriaLabel": "Esportes",
       "titulo": "Seleção brasileira vence amistoso preparatório",
       "descricao": "Time enfrenta adversário europeu em jogo com grande movimentação no meio-campo.",
-      "tempo": "Há 2 horas"
+      "tempo": "Há 2 horas",
+      "imagem": "https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=600&q=80"
     },
     {
       "categoria": "politics",
       "categoriaLabel": "Política",
       "titulo": "Câmara aprova projeto de lei importante",
       "descricao": "Legislativo valida proposta que tramitava há mais de um ano na casa.",
-      "tempo": "Há 3 horas"
+      "tempo": "Há 3 horas",
+      "imagem": "https://media.istockphoto.com/id/946578380/pt/foto/talking-to-audience.jpg?s=612x612&w=is&k=20&c=cNVD9Jj-Ze1oG2fQs2yK-MGHLp37hw_0ZtJXCD3GzoE="
     },
     {
       "categoria": "economy",
       "categoriaLabel": "Economia",
       "titulo": "Dólar fecha em queda após decisão do BC",
       "descricao": "Banco Central mantém taxa de juros e revisa projeções para inflação.",
-      "tempo": "Há 4 horas"
+      "tempo": "Há 4 horas",
+      "imagem": "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&q=80"
     },
     {
       "categoria": "tech",
       "categoriaLabel": "Tecnologia",
       "titulo": "Nova geração de processadores é apresentada",
       "descricao": "Fabricante anuncia chips com 40% de ganho de performance energética.",
-      "tempo": "Há 5 horas"
+      "tempo": "Há 5 horas",
+      "imagem": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600&q=80"
     },
     {
       "categoria": "world",
       "categoriaLabel": "Mundo",
       "titulo": "Europa enfrenta clima extremo com geada",
       "descricao": "Temperaturas recordes preocupam autoridades de diversos países europeus.",
-      "tempo": "Há 6 horas"
+      "tempo": "Há 6 horas",
+      "imagem": "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=600&q=80"
     },
     {
       "categoria": "science",
       "categoriaLabel": "Ciência",
       "titulo": "Astrônomos descobrem novo exoplaneta habitável",
       "descricao": "Telescópio espacial detecta planeta em zona de habitabilidade de estrela distante.",
-      "tempo": "Há 7 horas"
+      "tempo": "Há 7 horas",
+      "imagem": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80"
     }
   ]
 }
